@@ -1,8 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
 import shortUrl from "./models/shortUrl.js";
+import dotenv from "dotenv";
+dotenv.config();
 
-mongoose.connect("mongodb://localhost:27017/shorturl", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -39,5 +41,5 @@ app.get("/:shortUrl", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT} url: http://localhost:${PORT}`);
 });
